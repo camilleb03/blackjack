@@ -1,3 +1,3 @@
-# Blackjack card game
+# Blackjack
 - Made in Python
 - Simple console-line game
