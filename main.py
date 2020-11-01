@@ -5,8 +5,11 @@ from deck_game.constants import SUITS, RANKS
 
 def main():
     deck = Deck()
-    card = Card(4,0)
-    deck.remove_card(card)
+    deck.shuffle()
+    hand = Hand()
+    deck.deal_cards(hand, 5)
     print(deck)
+    print("----")
+    print(hand)
 
 main()

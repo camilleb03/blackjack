@@ -29,3 +29,6 @@ class Deck():
     def add_card(self,card):
         self.cards.append(card)
     
+    def deal_cards(self,hand,number):
+        for i in range(number):
+            hand.add_card(self.cards.pop())
