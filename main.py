@@ -1,6 +1,4 @@
-from deck_game.french_deck import FrenchDeck
-from deck_game.card import Card
-from deck_game.hand import Hand
+from deck_game import FrenchDeck, Hand
 
 def main():
     deck = FrenchDeck()
