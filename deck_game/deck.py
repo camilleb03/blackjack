@@ -1,21 +1,27 @@
 from deck_game.card import Card
-from deck_game.constants import SUITS, RANKS
 
 import random
+import itertools
 
 class Deck():
     """
     Represents a deck of cards
     """
+    cards_suits = []
+    cards_ranks = []
+
     def __init__(self):
         self.cards = []
-        self.cards = [Card(rank,suit) for rank in range(1, len(RANKS)) for suit in range(len(SUITS))]
+        self.refresh()
 
     def __str__(self):
         res = []
         for card in self.cards:
             res.append(str(card))
         return  '\n'.join(res)
+    
+    def refresh(self):
+        self.cards = [Card(rank,suit) for rank in range(1, len(self.card_ranks)) for suit in range(len(self.card_suits))]
 
     def shuffle(self):
         random.shuffle(self.cards)
