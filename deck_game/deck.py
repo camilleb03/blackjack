@@ -1,7 +1,5 @@
 from deck_game.card import Card
-
 import random
-import itertools
 
 class Deck():
     """
