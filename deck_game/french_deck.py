@@ -11,8 +11,8 @@ class FrenchDeck(Deck):
 
     def __init__(self):
         Deck.__init__(self)
-        self.refresh()
+        self.build()
 
-    def refresh(self):
+    def build(self):
         for i in itertools.product(self.card_suits, self.card_ranks):
             self.cards.append(Card(i[1], i[0]))
