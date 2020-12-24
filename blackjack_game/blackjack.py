@@ -25,6 +25,8 @@ class BlackJack():
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
+        # TODO: Find a cleaner way to flip last card
+        hand.cards[len(hand.cards) - 1].flip()
         print(f"Player {hand.player} has chosen to hit.")
 
     def stand(self, hand):
@@ -33,9 +35,30 @@ class BlackJack():
     def reveal_hands(self):
         for hand in self.hands:
             hand.reveal()
+    
+    def display_table(self):
+        for hand in self.hands:
+            print("+---------------+")
+            print(hand)
+        print("+---------------+")
+
+    def declare_winner(self):
+        # TODO: Find way to not favour last player
+        winner = self.hands.pop()
+        for hand in self.hands:
+            if hand.calculate_value() > winner.calculate_value():
+                winner = hand
+        return winner
 
     def play(self):
+        # Set up the round
         self.set_up()
-        print("----")
-        for hand in self.hands:
-            print(hand)
+
+        # Show current status 
+        self.display_table()
+
+        # Declare winner when every player has stand or bust
+        winner = self.declare_winner()
+        print(f"Player {winner.player} won !")
+
+
