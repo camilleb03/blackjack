@@ -1,10 +1,19 @@
 from blackjack_game import BlackJack, BlackJackHand
+import sys
 
 MAX_PLAYERS = 4
 
-def main():
+def show_actions_menu():
+    print("|----------- POSSIBLE ACTIONS -----------")
+    print("| b - Blackjack")
+    print("| h - Help")
+    print("| q - Quit game")
+    print("|----------------------------------------")
+
+def add_players():
     players =[]
-    # Enter all player participating
+    # Max player of 4
+    print(f"+------- PLAYERS -------+")
     while(len(players) < MAX_PLAYERS):
         user_name = input('Enter your name : ')
         if (len(user_name) == 0):
@@ -20,14 +29,27 @@ def main():
             continue
         players.append(user_name)
 
+    return players
+
+def main():
+    # Enter all player participating
+    players = add_players()
+
+    show_actions_menu()
+
     # Replay
     while(True):
-        user_action = input("Enter action (p to play) : ")
-        if (user_action == 'p'):
+        user_action = input("Enter action: ")
+        if (str(user_action).lower() == 'b'):
             # BlackJack game is starting
             game = BlackJack(players=players)
             game.play()
-
+        
+        # Verify if user wants to quit
+        if (str(user_action).lower() == "q"):
+            # Quit game
+            print("Thanks for playing!")
+            sys.exit()
 
 if __name__ == "__main__":
     main()
