@@ -39,9 +39,3 @@ class BlackJack():
         print("----")
         for hand in self.hands:
             print(hand)
-            print(hand.calculate_value())
-        
-        self.reveal_hands()
-        for hand in self.hands:
-            print(hand)
-            print(hand.calculate_value())
