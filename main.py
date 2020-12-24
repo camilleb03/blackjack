@@ -1,12 +1,18 @@
-from deck_game import FrenchDeck, Hand
+from blackjack_game import BlackJack, BlackJackHand
 
 def main():
-    deck = FrenchDeck()
-    deck.shuffle()
-    hand = Hand()
-    deck.deal_cards(hand, 5)
-    print(deck)
+    players = ['Carl','Bill']
+    game = BlackJack(players=players)
+    print(len(game.deck.cards))
+    game.first_round()
+    game.deck.shuffle()
+
+    game.deck.deal_cards(game.hands[0], 2)
+    game.deck.deal_cards(game.hands[1], 2)
+    print(len(game.deck.cards))
+
     print("----")
-    print(hand)
+    print(game.hands[0].calculate_value())
+    print(game.hands[1])
 
 main()

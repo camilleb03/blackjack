@@ -5,21 +5,15 @@ class Deck():
     """
     Represents a deck of cards
     """
-    cards_suits = []
-    cards_ranks = []
 
     def __init__(self):
         self.cards = []
-        self.refresh()
 
     def __str__(self):
         res = []
         for card in self.cards:
             res.append(str(card))
         return  '\n'.join(res)
-    
-    def refresh(self):
-        self.cards = [Card(rank,suit) for rank in range(1, len(self.card_ranks)) for suit in range(len(self.card_suits))]
 
     def shuffle(self):
         random.shuffle(self.cards)
@@ -28,11 +22,13 @@ class Deck():
         self.cards.sort(reverse=order)
 
     def remove_card(self, card):
+        # TODO: Check if there are cards left in the deck
         self.cards.remove(card)
-    
-    def add_card(self,card):
+
+    def add_card(self, card):
         self.cards.append(card)
     
-    def deal_cards(self,hand,number):
+    def deal_cards(self, hand, number):
+        # TODO: Check if there are enough cards in deck to deal
         for i in range(number):
             hand.add_card(self.cards.pop())
