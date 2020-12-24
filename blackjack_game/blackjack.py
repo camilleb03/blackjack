@@ -12,7 +12,7 @@ class BlackJack():
         self.hands = []
         self.player_names = players
 
-    def start(self):
+    def set_up(self):
         for name in self.player_names:
             # Assign a hand to every player
             hand = BlackJackHand(player_name=name)
@@ -35,7 +35,7 @@ class BlackJack():
             hand.reveal()
 
     def play(self):
-        self.start()
+        self.set_up()
         print("----")
         for hand in self.hands:
             print(hand)
