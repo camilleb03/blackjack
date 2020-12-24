@@ -8,7 +8,7 @@ class Card:
         self.hidden = hidden
 
     def flip(self):
-        self.hidden = not self.hidden
+        self.hidden = (not self.hidden)
     
     def __str__(self):
         if self.hidden:
