@@ -3,7 +3,7 @@ from deck_game import FrenchDeck
 
 class BlackJack():
     """
-    Represents a blackjack game
+    Represents a blackjack self
     """
     def __init__(self, players):
         self.deck = FrenchDeck()
@@ -25,15 +25,23 @@ class BlackJack():
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
+        print(f"Player {hand.player} has chosen to hit.")
 
-    def stand(self):
-        pass
+    def stand(self, hand):
+        print(f"Player {hand.player} has chosen to stand.")
 
     def reveal_hands(self):
         for hand in self.hands:
-            for card in hand.cards:
-                if card.hidden:
-                    card.flip()
+            hand.reveal()
 
     def play(self):
-        pass
+        self.start()
+        print("----")
+        for hand in self.hands:
+            print(hand)
+            print(hand.calculate_value())
+        
+        self.reveal_hands()
+        for hand in self.hands:
+            print(hand)
+            print(hand.calculate_value())

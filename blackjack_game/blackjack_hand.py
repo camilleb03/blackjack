@@ -7,7 +7,6 @@ class BlackJackHand(Hand):
 
     def __init__(self, player_name):
         Hand.__init__(self,player=player_name)
-        self.cards = []
         self.cards_status = []
 
     def calculate_value(self):
@@ -27,4 +26,9 @@ class BlackJackHand(Hand):
             sum = sum - 10
 
         return sum
+
+    def reveal(self):
+        for card in self.cards:
+            if card.hidden:
+                card.flip()
             
