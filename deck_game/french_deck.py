@@ -16,4 +16,3 @@ class FrenchDeck(Deck):
     def refresh(self):
         for i in itertools.product(self.card_suits, self.card_ranks):
             self.cards.append(Card(i[1], i[0]))
-        print(self.cards)
