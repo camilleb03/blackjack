@@ -1,3 +1,3 @@
 # Blackjack
 - Made in Python
-- Simple console-line game
+- Simple console-line game **WIP**
