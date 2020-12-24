@@ -4,7 +4,7 @@ class Hand(Deck):
     """
     Represents a hand of cards
     """
-    def __init__(self, player = "default"):
+    def __init__(self, player):
         self.cards = []
         self.player = player
 
