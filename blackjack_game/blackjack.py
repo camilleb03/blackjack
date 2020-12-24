@@ -7,21 +7,33 @@ class BlackJack():
     """
     def __init__(self, players):
         self.deck = FrenchDeck()
+        # Shuffle deck
+        self.deck.shuffle()
         self.hands = []
         self.player_names = players
 
-    def first_round(self):
+    def start(self):
         for name in self.player_names:
-            self.hands.append(BlackJackHand(player_name=name))
+            # Assign a hand to every player
+            hand = BlackJackHand(player_name=name)
+            # Deal two cards to each player
+            self.deck.deal_cards(hand, 2)
+            # Make only one card visible
+            hand.cards[0].flip()
+            # Add the card to the hands
+            self.hands.append(hand)
 
     def hit(self, hand):
-        pass
+        self.deck.deal_cards(hand, 1)
 
     def stand(self):
         pass
 
-    def show_hands(self):
-        pass
+    def reveal_hands(self):
+        for hand in self.hands:
+            for card in hand.cards:
+                if card.hidden:
+                    card.flip()
 
     def play(self):
         pass
