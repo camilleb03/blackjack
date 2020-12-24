@@ -7,6 +7,7 @@ class BlackJackHand(Hand):
 
     def __init__(self, player_name):
         Hand.__init__(self,player=player_name)
+        self.cards = []
         self.cards_status = []
 
     def calculate_value(self):
@@ -14,7 +15,7 @@ class BlackJackHand(Hand):
         contains_ace = False
 
         for card in self.cards:
-            if card.rank in ('J' or 'Q' or 'K'):
+            if card.rank in ('J', 'Q', 'K'):
                 sum += 10
             elif card.rank in ('A'):
                 sum += 11
