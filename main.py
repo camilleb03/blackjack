@@ -9,22 +9,22 @@ def show_actions_menu():
     print("| q - Quit game")
     print("|----------------------------------------")
 
-def add_players():
+def register_players():
     players =[]
     # Max player of 4
     print("+------------ PLAYERS ------------+")
     # TODO: Ask user to enter nb of players to register instead of imposing MAX to 4
     while(len(players) < MAX_PLAYERS):
-        user_name = input('Enter your name : ')
+        user_name = input(f'Enter name of player {len(players) + 1} : ')
         if (len(user_name) == 0):
             if(len(players) == 0):
-                print(f"You have to enter one player minimum")
+                print("You have to enter one player minimum")
                 continue
             else:
                 # TODO: Make print prettier here
                 print(f"Welcome {players} !")
                 break
-        if (user_name.lower() == 'dealer'):
+        if (user_name.lower() == 'dealer' or (user_name in players)):
             print(f"You cannot choose {user_name} as name")
             continue
         players.append(user_name)
@@ -32,7 +32,7 @@ def add_players():
 
 def main():
     # Enter all player participating
-    players = add_players()
+    players = register_players()
 
     show_actions_menu()
 
