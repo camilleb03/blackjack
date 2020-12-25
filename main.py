@@ -33,18 +33,16 @@ def register_players():
 def main():
     # Enter all player participating
     players = register_players()
-
     show_actions_menu()
-
-    # Replay
+    # Enter game mode
     while(True):
         user_action = input("Enter action: ")
         if (str(user_action).lower() == 'b'):
             # BlackJack game is starting
-            game = BlackJack(players=players)
-            game.show_game_title()
-            game.show_game_help_menu()
-            game.play()
+            blackjack = BlackJack(players=players)
+            blackjack.show_game_title()
+            blackjack.show_game_help_menu()
+            blackjack.play()
         
         # Verify if user wants to quit
         if (str(user_action).lower() == "q"):
