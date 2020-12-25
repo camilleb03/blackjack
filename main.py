@@ -1,4 +1,4 @@
-from blackjack_game import BlackJack, BlackJackHand
+from games import BlackJack, War
 import sys
 
 MAX_PLAYERS = 4

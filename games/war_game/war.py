@@ -1,0 +1,2 @@
+class War():
+    pass
