@@ -1,4 +1,4 @@
-from deck_game.deck import Deck, Card
+from playing_cards.deck import Deck, Card
 
 import itertools
 

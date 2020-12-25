@@ -1,4 +1,4 @@
-from deck_game.deck import Deck
+from playing_cards.deck import Deck
 
 class Hand(Deck):
     """

@@ -1,6 +1,6 @@
 import unittest
 
-from deck_game import FrenchDeck
+from playing_cards import FrenchDeck
 
 class TestFrenchDeck(unittest.TestCase):
     

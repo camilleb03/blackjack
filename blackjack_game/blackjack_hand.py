@@ -1,4 +1,4 @@
-from deck_game import Hand
+from playing_cards import Hand
 
 class BlackJackHand(Hand):
     """

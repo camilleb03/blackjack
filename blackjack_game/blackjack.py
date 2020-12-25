@@ -1,5 +1,5 @@
 from .blackjack_hand import BlackJackHand
-from deck_game import FrenchDeck
+from playing_cards import FrenchDeck
 
 class BlackJack():
     """
@@ -130,6 +130,9 @@ class BlackJack():
             elif user_decision == 's':
                 self.stand(player)
                 is_turn_over = True
+            # Wrong input
+            else:
+                pass
 
     def play_dealer_turn(self):
         # Dealer keeps hitting until his score is over 17
