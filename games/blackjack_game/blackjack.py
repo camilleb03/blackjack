@@ -3,8 +3,8 @@ from playing_cards import FrenchDeck
 
 class BlackJack():
     """
-    Represents a blackjack self
-    Reference for rules, goal and strategies : https://bicyclecards.com/how-to-play/blackjack/
+    Represents a blackjack game
+    Reference : https://bicyclecards.com/how-to-play/blackjack/
     """
 
     BUSTED_SCORE = 22
