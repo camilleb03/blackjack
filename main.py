@@ -4,7 +4,7 @@ import sys
 MAX_PLAYERS = 4
 
 def show_actions_menu():
-    print("|------------ POSSIBLE GAMES ------------")
+    print("|---------------- GAMES -----------------")
     print("| b - Blackjack")
     print("| q - Quit game")
     print("|----------------------------------------")
@@ -30,19 +30,23 @@ def register_players():
         players.append(user_name)
     return players
 
+def start_blackjack(players):
+    # BlackJack game is starting
+    blackjack = BlackJack(players=players)
+    blackjack.show_game_title()
+    blackjack.show_game_help_menu()
+    blackjack.play()
+
 def main():
     # Enter all player participating
     players = register_players()
+
     show_actions_menu()
     # Enter game mode
     while(True):
         user_action = input("Enter action: ")
         if (str(user_action).lower() == 'b'):
-            # BlackJack game is starting
-            blackjack = BlackJack(players=players)
-            blackjack.show_game_title()
-            blackjack.show_game_help_menu()
-            blackjack.play()
+            start_blackjack(players)
         
         # Verify if user wants to quit
         if (str(user_action).lower() == "q"):
