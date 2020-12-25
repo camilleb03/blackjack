@@ -4,6 +4,7 @@ from deck_game import FrenchDeck
 class BlackJack():
     """
     Represents a blackjack self
+    Reference for rules, goal and strategies : https://bicyclecards.com/how-to-play/blackjack/
     """
 
     BUSTED_SCORE = 22
@@ -47,13 +48,13 @@ class BlackJack():
         for hand in self.hands:
             hand.reveal()
     
-    def display_table(self):
+    def show_table(self):
         print("+----- TABLE -----+")
-        self.display_hand_value(self.dealer)
+        self.show_hand_value(self.dealer)
         for hand in self.hands:
-            self.display_hand_value(hand)
+            self.show_hand_value(hand)
 
-    def display_hand_value(self, hand):
+    def show_hand_value(self, hand):
         print(hand)
         print(f"Value of {hand.value}")
         print("+----------------+")
@@ -67,6 +68,7 @@ class BlackJack():
                 print(f"Player {hand.player_name} and {self.dealer.player_name} \
                         busted with value {hand.value} and {self.dealer.value}.")
                 continue
+            # FIXME: Prints as many times as the number of players
             # Dealer busted, then player win
             if self.dealer.busted:
                 winners.append(hand)
@@ -76,6 +78,7 @@ class BlackJack():
             if hand.busted:
                 print(f"Player {hand.player_name} busted with value {hand.value}")
                 continue
+            # TODO: Manage tie between the two
             # Neither busted, compare hand value
             if hand.calculate_value() > self.dealer.calculate_value():
                 winners.append(hand)
@@ -105,7 +108,7 @@ class BlackJack():
         print(self.dealer)
         print("+----------------+")
         # Print hand of player and its current value
-        self.display_hand_value(player)
+        self.show_hand_value(player)
         # Current player's turn
         print(f"Player {player.player_name}'s turn")
 
@@ -122,7 +125,7 @@ class BlackJack():
                     # Player busted
                     player.did_bust()
                 # Show player's hand
-                self.display_hand_value(player)
+                self.show_hand_value(player)
             # Player has decided to stand
             elif user_decision == 's':
                 self.stand(player)
@@ -148,7 +151,7 @@ class BlackJack():
         self.dealer.reveal()
 
         # Show final table (all hands)
-        self.display_table()
+        self.show_table()
 
         # Declare winners
         winners = self.find_winners()
