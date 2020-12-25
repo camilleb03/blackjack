@@ -22,13 +22,16 @@ class Deck():
         self.cards.sort(reverse=order)
 
     def remove_card(self, card):
-        # TODO: Check if there are cards left in the deck
-        self.cards.remove(card)
+        if self.check_enough_cards_in_deck(1):
+            self.cards.remove(card)
 
     def add_card(self, card):
         self.cards.append(card)
     
     def deal_cards(self, hand, number):
-        # TODO: Check if there are enough cards in deck to deal
-        for i in range(number):
-            hand.add_card(self.cards.pop())
+        if self.check_enough_cards_in_deck(number):
+            for i in range(number):
+                hand.add_card(self.cards.pop())
+    
+    def check_enough_cards_in_deck(self, nb_to_remove):
+        return len(self.cards) >= nb_to_remove
