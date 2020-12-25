@@ -1,4 +1,4 @@
-from playing_cards.card import Card
+from .card import Card
 import random
 
 class Deck():

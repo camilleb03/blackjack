@@ -1,5 +1,4 @@
-from playing_cards.deck import Deck, Card
-
+from .deck import Deck, Card
 import itertools
 
 class FrenchDeck(Deck):
