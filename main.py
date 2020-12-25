@@ -13,11 +13,12 @@ def add_players():
     players =[]
     # Max player of 4
     print("+------------ PLAYERS ------------+")
+    # TODO: Ask user to enter nb of players to register instead of imposing MAX to 4
     while(len(players) < MAX_PLAYERS):
         user_name = input('Enter your name : ')
         if (len(user_name) == 0):
             if(len(players) == 0):
-                print(f"You have to enther one player minimum")
+                print(f"You have to enter one player minimum")
                 continue
             else:
                 # TODO: Make print prettier here
@@ -27,7 +28,6 @@ def add_players():
             print(f"You cannot choose {user_name} as name")
             continue
         players.append(user_name)
-
     return players
 
 def main():
