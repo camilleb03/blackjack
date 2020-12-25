@@ -4,16 +4,15 @@ import sys
 MAX_PLAYERS = 4
 
 def show_actions_menu():
-    print("|----------- POSSIBLE ACTIONS -----------")
+    print("|------------ POSSIBLE GAMES ------------")
     print("| b - Blackjack")
-    print("| h - Help")
     print("| q - Quit game")
     print("|----------------------------------------")
 
 def add_players():
     players =[]
     # Max player of 4
-    print(f"+------- PLAYERS -------+")
+    print("+------------ PLAYERS ------------+")
     while(len(players) < MAX_PLAYERS):
         user_name = input('Enter your name : ')
         if (len(user_name) == 0):
@@ -43,6 +42,8 @@ def main():
         if (str(user_action).lower() == 'b'):
             # BlackJack game is starting
             game = BlackJack(players=players)
+            game.show_game_title()
+            game.show_game_help_menu()
             game.play()
         
         # Verify if user wants to quit

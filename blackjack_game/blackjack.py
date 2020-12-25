@@ -34,13 +34,6 @@ class BlackJack():
         self.deck.deal_cards(self.dealer, 2)
         # Make only one card visible
         self.dealer.cards[0].flip()
-    
-    def play_dealer_turn(self):
-        # Dealer keeps hitting until his score is over 17
-        while (self.dealer.calculate_value() < self.MAX_DEALER_SCORE):
-            self.deck.deal_cards(self.dealer, 1)
-        if self.dealer.calculate_value() >= self.BUSTED_SCORE:
-            self.dealer.did_bust()
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
@@ -65,7 +58,7 @@ class BlackJack():
         print(f"Value of {hand.value}")
         print("+----------------+")
 
-    def declare_winner(self):
+    def find_winners(self):
         winners = []
         # Check who won between dealer and each player
         for hand in self.hands:
@@ -89,39 +82,66 @@ class BlackJack():
 
         return winners
 
+    def show_game_winners(self, winners):
+        for player in self.hands:
+            if player in winners:
+                print(f"Player {player.player_name} won !")
+            else:
+                print(f"Player {player.player_name} lost !")
+
+    def show_game_title(self):
+        print("+--------------------------------+")
+        print("+            BlackJack           +")
+        print("+--------------------------------+")
+
+    def show_game_help_menu(self):
+        print("+------------- HELP -------------+")
+        print("Goal : \n Each participant attempts \n to beat the dealer by getting a \n count as close to 21 as possible,\n without going over 21 (busting).")
+        print("Rules : \n A player must decide to : \n-stand (not ask for another card)\n-hit (ask another card to get \n closer to a count of 21).")
+        print("+--------------------------------+")
+
+    def show_player_dealer_hands(self, player):
+        # Print hand of dealer
+        print(self.dealer)
+        print("+----------------+")
+        # Print hand of player and its current value
+        self.display_hand_value(player)
+        # Current player's turn
+        print(f"Player {player.player_name}'s turn")
+
+    def play_player_turn(self, player):
+        is_turn_over = False
+        while (not is_turn_over and not player.busted):
+            user_decision = input('Hit (h) | Stand (s) : ').lower()
+            # Player has decided to hit
+            if user_decision == 'h':
+                self.hit(player)
+                # Calculate player's hand value
+                player.calculate_value()
+                if player.value >= self.BUSTED_SCORE:
+                    # Player busted
+                    player.did_bust()
+                # Show player's hand
+                self.display_hand_value(player)
+            # Player has decided to stand
+            elif user_decision == 's':
+                self.stand(player)
+                is_turn_over = True
+
+    def play_dealer_turn(self):
+        # Dealer keeps hitting until his score is over 17
+        while (self.dealer.calculate_value() < self.MAX_DEALER_SCORE):
+            self.deck.deal_cards(self.dealer, 1)
+        if self.dealer.calculate_value() >= self.BUSTED_SCORE:
+            self.dealer.did_bust()
+    
     def play(self):
-        print("+----------------+")
-        print('BlackJack')
-        print("+----------------+")
         # Set up the round
         self.set_up()
         # For each player
         for player in self.hands:
-            # Print hand of dealer
-            print(self.dealer)
-            # Print hand of player and its current value
-            self.display_hand_value(player)
-            is_turn_over = False
-            # Current player's turn
-            print(f"Player {player.player_name}'s turn")
-            while (not is_turn_over and not player.busted):
-                user_decision = input('Hit (h) | Stand (s) : ').lower()
-                # Player has decided to hit
-                if user_decision == 'h':
-                    self.hit(player)
-                    # Calculate player's hand value
-                    player.calculate_value()
-                    if player.value >= self.BUSTED_SCORE:
-                        # Player busted
-                        player.did_bust()
-                    # Show player's hand
-                    self.display_hand_value(player)
-
-                # Player has decided to stand
-                elif user_decision == 's':
-                    self.stand(player)
-                    is_turn_over = True
-            
+            self.show_player_dealer_hands(player)
+            self.play_player_turn(player)
 
         # Dealer's turn
         self.play_dealer_turn()
@@ -131,9 +151,5 @@ class BlackJack():
         self.display_table()
 
         # Declare winners
-        winners = self.declare_winner()
-        for player in self.hands:
-            if player in winners:
-                print(f"Player {player.player_name} won !")
-            else:
-                print(f"Player {player.player_name} lost !")
+        winners = self.find_winners()
+        self.show_game_winners(winners)
