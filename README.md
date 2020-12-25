@@ -1,3 +1,5 @@
-# Blackjack
+# Card Games
 - Made in Python
-- Simple console-line game **WIP**
+- List of games
+    - Blackjack
+    - War **WIP**
