@@ -19,49 +19,100 @@ class TestBlackJackHand(unittest.TestCase):
         """
         Check that two non face cards return the right value for hand
         """
-        pass
+        card1 = Card('8', 'Spades')
+        card2 = Card('9', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.calculate_value()
+        self.assertEqual(self.hand.value, 17)
     
     def test_calculate_value_blackjack_hand_two_face_cards(self):
         """
         Check that two face cards return the right value for hand
         """
-        pass
+        card1 = Card('K', 'Spades')
+        card2 = Card('Q', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.calculate_value()
+        self.assertEqual(self.hand.value, 20)
 
     def test_calculate_value_blackjack_hand_one_face_cards(self):
         """
         Check that one face card and one non-face card return the right value for hand
         """
-        pass
+        card1 = Card('8', 'Spades')
+        card2 = Card('Q', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.calculate_value()
+        self.assertEqual(self.hand.value, 18)
 
     def test_calculate_value_blackjack_hand_with_ace_below_21(self):
         """
         Check that an Ace card and one other card return the right value for hand
         """
-        pass
+        card1 = Card('9', 'Spades')
+        card2 = Card('A', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.calculate_value()
+        self.assertEqual(self.hand.value, 20)
 
     def test_calculate_value_blackjack_hand_with_ace_above_21(self):
         """
         Check that an Ace card and two other cards return the right value for hand
         """
-        pass
+        card1 = Card('8', 'Spades')
+        card2 = Card('Q', 'Spades')
+        card3 = Card('A', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.add_card(card3)
+        self.hand.calculate_value()
+        self.assertEqual(self.hand.value, 19)
     
     def test_reveal_hand_all_cards_hidden(self):
         """
         Check that all cards are visible in hand if all cards were hidden before
         """
-        pass
+        card1 = Card('8', 'Spades')
+        card2 = Card('Q', 'Spades')
+        card3 = Card('A', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.add_card(card3)
+        self.hand.reveal()
+        for card in self.hand.cards:
+            self.assertFalse(card.hidden)
     
     def test_reveal_hand_one_card_visible(self):
         """
         Check that all cards are visible in hand if one card was visible and other were hidden before
         """
-        pass
+        card1 = Card('8', 'Spades', hidden=False)
+        card2 = Card('Q', 'Spades', hidden=True)
+        card3 = Card('A', 'Spades', hidden=True)
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.add_card(card3)
+        self.hand.reveal()
+        for card in self.hand.cards:
+            self.assertFalse(card.hidden)
     
     def test_hand_busted(self):
         """
         Check that busted attribute is True when hand has a value above 21
         """
-        pass
+        card1 = Card('8', 'Spades')
+        card2 = Card('Q', 'Spades')
+        card3 = Card('9', 'Spades')
+        self.hand.add_card(card1)
+        self.hand.add_card(card2)
+        self.hand.add_card(card3)
+        self.hand.calculate_value()
+        self.hand.did_bust()
+        self.assertTrue(self.hand.busted)
     
 if __name__ == '__main__':
     unittest.main()
