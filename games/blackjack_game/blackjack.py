@@ -7,7 +7,6 @@ class BlackJack():
     Reference : https://bicyclecards.com/how-to-play/blackjack/
     """
 
-    BUSTED_SCORE = 22
     MAX_DEALER_SCORE = 17
 
     def __init__(self, players):
@@ -121,9 +120,8 @@ class BlackJack():
                 self.hit(player)
                 # Calculate player's hand value
                 player.calculate_value()
-                if player.value >= self.BUSTED_SCORE:
-                    # Player busted
-                    player.did_bust()
+                # Determine if player busted or not
+                player.did_bust()
                 # Show player's hand
                 self.show_hand_value(player)
             # Player has decided to stand
@@ -138,8 +136,8 @@ class BlackJack():
         # Dealer keeps hitting until his score is over 17
         while (self.dealer.calculate_value() < self.MAX_DEALER_SCORE):
             self.deck.deal_cards(self.dealer, 1)
-        if self.dealer.calculate_value() >= self.BUSTED_SCORE:
-            self.dealer.did_bust()
+        # Determine if dealer did bust
+        self.dealer.did_bust()
     
     def play(self):
         # Set up the round
