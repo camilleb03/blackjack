@@ -34,6 +34,7 @@ class BlackJack():
         self.deck.deal_cards(self.dealer, 2)
         # Make only one card visible
         self.dealer.cards[0].flip()
+        self.dealer.calculate_value()
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
@@ -42,10 +43,6 @@ class BlackJack():
 
     def stand(self, hand):
         print(f"Player {hand.player_name} has chosen to stand.")
-
-    def reveal_hands(self):
-        for hand in self.hands:
-            hand.reveal()
     
     def show_table(self):
         print("+----- TABLE -----+")
@@ -57,6 +54,7 @@ class BlackJack():
         print(hand)
         print(f"Value of {hand.value}")
         print("+----------------+")
+    
     """
     Old function that does not manage TIE
     def find_winners(self):
