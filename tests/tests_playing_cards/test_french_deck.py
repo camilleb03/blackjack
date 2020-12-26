@@ -81,12 +81,14 @@ class TestFrenchDeck(unittest.TestCase):
         self.assertEqual(len(self.deck.cards), 51)
         self.assertFalse(data in self.deck.cards)
     
-    # TODO: Complete test
     def test_remove_card_invalid(self):
         """
         Check when there is enough cards to be removed from the deck
         """
-        pass
+        self.deck.deal_cards(Hand('Test'), len(self.deck.cards))
+        self.assertEqual(len(self.deck.cards), 0)
+        self.deck.remove_card(Card('8', 'Spades'))
+        self.assertEqual(len(self.deck.cards), 0)
 
     def test_deal_cards_right_number_in_deck(self):
         """
