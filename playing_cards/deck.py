@@ -6,8 +6,9 @@ class Deck():
     Represents a deck of cards
     """
 
-    def __init__(self):
+    def __init__(self, nb_decks=1):
         self.cards = []
+        self.nb_decks = nb_decks
 
     def __str__(self):
         res = []
@@ -32,3 +33,6 @@ class Deck():
     
     def check_enough_cards_in_deck(self, nb_to_remove):
         return len(self.cards) >= nb_to_remove
+    
+    def build(self):
+        raise NotImplementedError("A deck needs cards in it")
