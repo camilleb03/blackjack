@@ -17,10 +17,20 @@ class Card:
             return '%s of %s' % (self.rank,self.suit)
 
     def __eq__(self, other):
-        return ((self.suit, self.rank) == (other.suit, other.rank))
+        if isinstance(other, Card):
+            return ((self.suit, self.rank) == (other.suit, other.rank))
+        return NotImplemented
 
     def __ne__(self, other):
-        return not (self == other)
+        if isinstance(other, Card):
+            return ((self.suit, self.rank) != (other.suit, other.rank))
+        return NotImplemented
 
+    """
+    TODO: Not sure what to do about this
     def __lt__(self, other):
-        return ((self.suit, self.rank) < (other.suit, other.rank))
+        if isinstance(other, Card):
+            return ((self.suit, self.rank) < (other.suit, other.rank))
+        return NotImplemented
+    """
+        

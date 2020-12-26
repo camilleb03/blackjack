@@ -49,7 +49,7 @@ class TestFrenchDeck(unittest.TestCase):
 
     
     # FIXME: Not working because of card comparison (lesser than)
-    @unittest.expectedFailure
+    @unittest.skip("WIP : less_than not implemented yet")
     def test_sort_cards_in_deck(self):
         """
         Check that deck is sorted correctly by suits and ranks
