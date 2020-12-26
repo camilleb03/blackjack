@@ -36,7 +36,7 @@ class TestFrenchDeck(unittest.TestCase):
         self.assertEqual(self.deck.cards[len(self.deck.cards)-1].rank, data2.rank)
         self.assertEqual(self.deck.cards[len(self.deck.cards)-1].suit, data2.suit)
 
-    # TODO: Mock something to force cards to shuffle (first and last)
+    # FIXME: Mock something to test better if by any chance the first or last card stay at the same position
     def test_shuffle_cards_in_deck(self):
         """
         Check that deck is shuffled correctly
