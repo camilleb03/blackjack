@@ -17,9 +17,6 @@ class Deck():
 
     def shuffle(self):
         random.shuffle(self.cards)
-    
-    def sort(self, order=False):
-        self.cards.sort(reverse=order)
 
     def remove_card(self, card):
         if self.check_enough_cards_in_deck(1):

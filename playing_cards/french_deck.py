@@ -15,3 +15,6 @@ class FrenchDeck(Deck):
     def build(self):
         for i in itertools.product(self.card_suits, self.card_ranks):
             self.cards.append(Card(i[1], i[0]))
+    
+    def sort(self, order=False):
+        self.cards.sort(reverse=order)
