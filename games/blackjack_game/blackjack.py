@@ -10,12 +10,16 @@ class BlackJack():
     MAX_DEALER_SCORE = 17
 
     def __init__(self, players):
+
         self.deck = FrenchDeck()
         # Shuffle deck
         self.deck.shuffle()
         self.hands = []
         self.player_names = players
         self.dealer = BlackJackHand(player_name='Dealer')
+
+        # Set up the round
+        self.set_up()
 
     def set_up(self):
         # For all real players
@@ -188,8 +192,6 @@ class BlackJack():
         self.dealer.did_bust()
     
     def play(self):
-        # Set up the round
-        self.set_up()
         # For each player
         for player in self.hands:
             self.show_player_dealer_hands(player)

@@ -12,7 +12,6 @@ class TestBlackJackGame(unittest.TestCase):
         """
         Check that blackjack game is created with right info
         """
-        self.blackjack.set_up()
         self.assertEqual(self.blackjack.player_names, ['Test1', 'Test2', 'Test3'])
         self.assertIsInstance(self.blackjack.dealer, BlackJackHand)
         self.assertEqual(self.blackjack.dealer.player_name.lower(), 'dealer')
@@ -21,7 +20,6 @@ class TestBlackJackGame(unittest.TestCase):
         """
         Check that the number of hands is the same as the number of players
         """
-        self.blackjack.set_up()
         self.assertEqual(len(self.blackjack.player_names), 3)
         self.assertEqual(len(self.blackjack.hands), 3)
 
@@ -29,7 +27,6 @@ class TestBlackJackGame(unittest.TestCase):
         """
         Check that the number of cards per hand is two for everyone (including dealer)
         """
-        self.blackjack.set_up()
         for hand in self.blackjack.hands:
             self.assertEqual(len(hand.cards), 2)
         self.assertEqual(len(hand.cards), 2)
@@ -38,7 +35,6 @@ class TestBlackJackGame(unittest.TestCase):
         """
         Check that the all cards are revealed except for one card in the dealer's hand
         """
-        self.blackjack.set_up()
         for hand in self.blackjack.hands:
             for card in hand.cards:
                 self.assertFalse(card.hidden)
@@ -49,7 +45,6 @@ class TestBlackJackGame(unittest.TestCase):
         """
         Check that every hand (including dealer's) has a value over 0
         """
-        self.blackjack.set_up()
         for hand in self.blackjack.hands:
             self.assertGreater(hand.value, 0)
         self.assertGreater(self.blackjack.dealer.value, 0)
