@@ -1,6 +1,6 @@
 import sys
 
-from games import BlackJack
+from games import BlackJack, War
 
 MAX_PLAYERS = 4
 
@@ -42,10 +42,23 @@ def start_blackjack(players):
     blackjack.play()
 
 
+def start_war(players):
+    # BlackJack game is starting
+    war = War(nb_decks=1)
+    war.show_game_title()
+    war.add_players(players=players)
+
 def main():
     # Enter all player participating
-    players = register_players()
+    # players = register_players()
+    players = ['Boh', 'Bah', 'Beh']
+    start_war(players=players)
+    
 
+def main2():
+    # Enter all player participating
+    # players = register_players()
+    players = ['Boh', 'Bah', 'Beh']
     show_actions_menu()
     # Enter game mode
     while True:
