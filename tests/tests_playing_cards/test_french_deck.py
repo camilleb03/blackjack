@@ -64,7 +64,7 @@ class TestFrenchDeck(unittest.TestCase):
         self.deck.shuffle()
         self.assertTrue((self.deck.cards[0].rank != data.rank) or (self.deck.cards[0].suit != data.suit))
         self.assertTrue((self.deck.cards[len(self.deck.cards) - 1].rank != data2.rank) or (
-                    self.deck.cards[len(self.deck.cards) - 1].suit != data2.suit))
+                self.deck.cards[len(self.deck.cards) - 1].suit != data2.suit))
 
     # FIXME: Not working because of card comparison (lesser than)
     @unittest.skip("WIP : less_than not implemented yet")

@@ -1,6 +1,6 @@
-from ..card_game.game_status import GameStatus
 from playing_cards import FrenchDeck
 from .blackjack_hand import BlackJackHand
+from ..card_game.game_status import GameStatus
 
 
 class BlackJack():
