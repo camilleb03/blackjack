@@ -20,12 +20,10 @@ class Card:
     def __eq__(self, other):
         if isinstance(other, Card):
             return (self.suit, self.rank) == (other.suit, other.rank)
-        return NotImplemented
 
     def __ne__(self, other):
         if isinstance(other, Card):
             return (self.suit, self.rank) != (other.suit, other.rank)
-        return NotImplemented
 
     """
     TODO: Not sure what to do about this
