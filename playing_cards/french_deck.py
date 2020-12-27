@@ -1,6 +1,9 @@
-from .deck import Deck, Card
-import itertools
 import copy
+import itertools
+
+from .card import Card
+from .deck import Deck
+
 
 class FrenchDeck(Deck):
     """
@@ -10,7 +13,7 @@ class FrenchDeck(Deck):
     card_ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
     def __init__(self, nb_decks=1):
-        Deck.__init__(self, nb_decks)
+        super().__init__(nb_decks)
         self.build()
 
     def build(self):
@@ -20,6 +23,6 @@ class FrenchDeck(Deck):
             self.cards.append(Card(i[1], i[0]))
         # Multiply content as many as the number of decks
         self.cards = [copy.deepcopy(card) for card in self.nb_decks * self.cards]
-    
+
     def sort(self, order=False):
         self.cards.sort(reverse=order)
