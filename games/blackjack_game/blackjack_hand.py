@@ -25,7 +25,7 @@ class BlackJackHand(Hand):
                 contains_ace = True
             else:
                 # Assign number on card
-                new_value += int(card.rank.value)
+                new_value += card.rank.value
         # Check if putting value of 1 for an A is better
         if new_value > 21 and contains_ace:
             new_value = new_value - 10

@@ -59,33 +59,6 @@ class BlackJack():
         print(f"Value of {hand.value}")
         print("+----------------+")
 
-    """
-    Old function that does not manage TIE
-    def find_winners(self):
-        winners = []
-        # Check who won between dealer and each player
-        for hand in self.hands:
-            # Both busted, then neither win
-            if hand.busted and self.dealer.busted:
-                print(f"Player {hand.player_name} and {self.dealer.player_name} \
-                        busted with value {hand.value} and {self.dealer.value}.")
-                continue
-            # Dealer busted, then player win
-            if self.dealer.busted:
-                winners.append(hand)
-                print(f"{self.dealer.player_name} busted with value {self.dealer.value}.")
-                continue
-            # Player busted, then dealer win
-            if hand.busted:
-                print(f"Player {hand.player_name} busted with value {hand.value}")
-                continue
-            # Neither busted, compare hand value
-            if hand.calculate_value() > self.dealer.calculate_value():
-                winners.append(hand)
-
-        return winners
-    """
-
     def calculate_player_status(self):
         players_status = []
         # Check who won between dealer and each player
