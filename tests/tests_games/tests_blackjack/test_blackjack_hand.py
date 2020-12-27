@@ -24,7 +24,6 @@ class TestBlackJackHand(unittest.TestCase):
         card2 = Card('9', 'Spades')
         self.hand.add_card(card1)
         self.hand.add_card(card2)
-        self.hand.calculate_value()
         self.assertEqual(self.hand.value, 17)
 
     def test_calculate_value_blackjack_hand_two_face_cards(self):
@@ -35,7 +34,6 @@ class TestBlackJackHand(unittest.TestCase):
         card2 = Card('Q', 'Spades')
         self.hand.add_card(card1)
         self.hand.add_card(card2)
-        self.hand.calculate_value()
         self.assertEqual(self.hand.value, 20)
 
     def test_calculate_value_blackjack_hand_one_face_cards(self):
@@ -46,7 +44,6 @@ class TestBlackJackHand(unittest.TestCase):
         card2 = Card('Q', 'Spades')
         self.hand.add_card(card1)
         self.hand.add_card(card2)
-        self.hand.calculate_value()
         self.assertEqual(self.hand.value, 18)
 
     def test_calculate_value_blackjack_hand_with_ace_below_21(self):
@@ -57,7 +54,6 @@ class TestBlackJackHand(unittest.TestCase):
         card2 = Card('A', 'Spades')
         self.hand.add_card(card1)
         self.hand.add_card(card2)
-        self.hand.calculate_value()
         self.assertEqual(self.hand.value, 20)
 
     def test_calculate_value_blackjack_hand_with_ace_above_21(self):
@@ -70,7 +66,6 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.add_card(card1)
         self.hand.add_card(card2)
         self.hand.add_card(card3)
-        self.hand.calculate_value()
         self.assertEqual(self.hand.value, 19)
 
     def test_reveal_hand_all_cards_hidden(self):
@@ -111,8 +106,6 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.add_card(card1)
         self.hand.add_card(card2)
         self.hand.add_card(card3)
-        self.hand.calculate_value()
-        self.hand.did_bust()
         self.assertTrue(self.hand.busted)
 
 

@@ -5,12 +5,7 @@ class Player:
 
     def __init__(self, name):
         self.name = name
-        self._hand = None
+        self.hand = None
 
-    @property
-    def hand(self):
-        return self._hand()
-
-    @hand.setter
-    def hand(self, new_hand):
-        self._hand = new_hand
+    def set_hand(self, hand):
+        self.hand = hand

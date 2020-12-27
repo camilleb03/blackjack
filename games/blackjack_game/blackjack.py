@@ -32,7 +32,6 @@ class BlackJack():
             self.deck.deal_cards(hand, 2)
             # Turn them up
             hand.reveal()
-            hand.calculate_value()
             # Add the card to the hands
             self.hands.append(hand)
 
@@ -40,7 +39,6 @@ class BlackJack():
         self.deck.deal_cards(self.dealer, 2)
         # Make only one card visible
         self.dealer.cards[0].flip()
-        self.dealer.calculate_value()
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
@@ -171,15 +169,11 @@ class BlackJack():
 
     def play_player_turn(self, player):
         is_turn_over = False
-        while (not is_turn_over and not player.busted):
+        while not is_turn_over and not player.busted:
             user_decision = input('Hit (h) | Stand (s) : ').lower()
             # Player has decided to hit
             if user_decision == 'h':
                 self.hit(player)
-                # Calculate player's hand value
-                player.calculate_value()
-                # Determine if player busted or not
-                player.did_bust()
                 # Show player's hand
                 self.show_hand_value(player)
             # Player has decided to stand
@@ -192,10 +186,8 @@ class BlackJack():
 
     def play_dealer_turn(self):
         # Dealer keeps hitting until his score is over 17
-        while (self.dealer.calculate_value() < self.MAX_DEALER_SCORE):
+        while self.dealer.value < self.MAX_DEALER_SCORE:
             self.deck.deal_cards(self.dealer, 1)
-        # Determine if dealer did bust
-        self.dealer.did_bust()
 
     def play(self):
         # For each player
