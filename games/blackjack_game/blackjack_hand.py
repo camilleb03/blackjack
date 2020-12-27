@@ -17,15 +17,15 @@ class BlackJackHand(Hand):
         contains_ace = False
         for card in self.cards:
             # Assign 10 to J,Q or K
-            if card.rank in ('J', 'Q', 'K'):
+            if card.rank.value in (11, 12, 13):
                 new_value += 10
             # Assign 11 to A
-            elif card.rank in 'A':
+            elif card.rank.value == 1:
                 new_value += 11
                 contains_ace = True
             else:
                 # Assign number on card
-                new_value += int(card.rank)
+                new_value += int(card.rank.value)
         # Check if putting value of 1 for an A is better
         if new_value > 21 and contains_ace:
             new_value = new_value - 10

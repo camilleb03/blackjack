@@ -36,19 +36,16 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check that deck contains all combinations of ranks and suits
         """
-        for idx, i in enumerate(itertools.product(self.deck.card_suits, self.deck.card_ranks)):
-            card = Card(i[1], i[0])
-            self.assertEqual(self.deck.cards[idx].rank, card.rank)
-            self.assertEqual(self.deck.cards[idx].suit, card.suit)
-        # self.assertCountEqual(self.deck.cards, data)
+        data = [Card(i[1], i[0]) for idx, i in enumerate(itertools.product(self.deck.StandardFrenchDeckSuit, self.deck.StandardFrenchDeckValue))]
+        self.assertCountEqual(self.deck.cards, data)
 
     def test_generate_cards_order(self):
         """
         Check that deck contains 52 cards in ascending order
-        A to K ; Sapdes to Clubs
+        A to K ; Clubs to Spades
         """
-        data = Card('A', 'Spades')
-        data2 = Card('K', 'Clubs')
+        data = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
         self.assertEqual(self.deck.cards[0].rank, data.rank)
         self.assertEqual(self.deck.cards[0].suit, data.suit)
         self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].rank, data2.rank)
@@ -59,21 +56,21 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check that deck is shuffled correctly
         """
-        data = Card('A', 'Spades')
-        data2 = Card('K', 'Clubs')
+        data = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
         self.deck.shuffle()
         self.assertTrue((self.deck.cards[0].rank != data.rank) or (self.deck.cards[0].suit != data.suit))
         self.assertTrue((self.deck.cards[len(self.deck.cards) - 1].rank != data2.rank) or (
                 self.deck.cards[len(self.deck.cards) - 1].suit != data2.suit))
 
     # FIXME: Not working because of card comparison (lesser than)
-    @unittest.skip("WIP : less_than not implemented yet")
+    # @unittest.skip("WIP : less_than not implemented yet")
     def test_sort_cards_in_deck(self):
         """
         Check that deck is sorted correctly by suits and ranks
         """
-        data = Card('A', 'Spades')
-        data2 = Card('K', 'Clubs')
+        data = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
         self.deck.shuffle()
         self.deck.sort()
         self.assertEqual(self.deck.cards[0].rank, data.rank)
@@ -85,7 +82,7 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check card is added at the end
         """
-        data = Card('8', 'Spades')
+        data = Card(self.deck.StandardFrenchDeckValue.Eight, self.deck.StandardFrenchDeckSuit.Clubs)
         self.deck.add_card(data)
         self.assertEqual(len(self.deck.cards), 53)
         self.assertEqual(self.deck.cards[53 - 1], data)
@@ -94,7 +91,7 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check card is not in the deck after removing it and that the right card is removed
         """
-        data = Card('8', 'Spades')
+        data = Card(self.deck.StandardFrenchDeckValue.Eight, self.deck.StandardFrenchDeckSuit.Clubs)
         removed_card = self.deck.remove_card_by_value(data)
         self.assertEqual(removed_card, data)
         self.assertEqual(len(self.deck.cards), 51)
@@ -104,9 +101,10 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check when there is enough cards to be removed from the deck
         """
+        data = Card(self.deck.StandardFrenchDeckValue.Eight, self.deck.StandardFrenchDeckSuit.Clubs)
         self.deck.deal_cards(Hand('Test'), len(self.deck.cards))
         self.assertEqual(len(self.deck.cards), 0)
-        self.deck.remove_card_by_value(Card('8', 'Spades'))
+        self.deck.remove_card_by_value(data)
         self.assertEqual(len(self.deck.cards), 0)
 
     def test_deal_cards_right_number_in_deck(self):
