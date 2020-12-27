@@ -17,8 +17,7 @@ class Deck(CardsCollection):
         if self.check_enough_cards(nb_to_deal):
             for i in range(nb_to_deal):
                 # Adds card to the end of hand
-                nb_cards_in_hand = hand.get_nb_cards()
-                hand.add_card(card=self.cards.pop())
+                hand.add_card(self.cards.pop())
         # TODO: Do something when there is not enough cards to deal
         else:
             print("Cannot deal cards")
