@@ -44,10 +44,10 @@ class TestFrenchDeck(unittest.TestCase):
         Check that deck contains 52 cards in ascending order
         A to K ; Clubs to Spades
         """
-        data = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data1 = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
         data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
-        self.assertEqual(self.deck.cards[0].rank, data.rank)
-        self.assertEqual(self.deck.cards[0].suit, data.suit)
+        self.assertEqual(self.deck.cards[0].rank, data1.rank)
+        self.assertEqual(self.deck.cards[0].suit, data1.suit)
         self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].rank, data2.rank)
         self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].suit, data2.suit)
 
@@ -63,20 +63,31 @@ class TestFrenchDeck(unittest.TestCase):
         self.assertTrue((self.deck.cards[len(self.deck.cards) - 1].rank != data2.rank) or (
                 self.deck.cards[len(self.deck.cards) - 1].suit != data2.suit))
 
-    # FIXME: Not working because of card comparison (lesser than)
-    # @unittest.skip("WIP : less_than not implemented yet")
     def test_sort_cards_in_deck(self):
         """
         Check that deck is sorted correctly by suits and ranks
         """
-        data = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data1 = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
         data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
         self.deck.shuffle()
         self.deck.sort()
-        self.assertEqual(self.deck.cards[0].rank, data.rank)
-        self.assertEqual(self.deck.cards[0].suit, data.suit)
+        self.assertEqual(self.deck.cards[0].rank, data1.rank)
+        self.assertEqual(self.deck.cards[0].suit, data1.suit)
         self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].rank, data2.rank)
         self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].suit, data2.suit)
+    
+    def test_reversed_sort_cards_in_deck(self):
+        """
+        Check that deck is sorted correctly by suits and ranks
+        """
+        data1 = Card(self.deck.StandardFrenchDeckValue.A, self.deck.StandardFrenchDeckSuit.Clubs)
+        data2 = Card(self.deck.StandardFrenchDeckValue.K, self.deck.StandardFrenchDeckSuit.Spades)
+        self.deck.shuffle()
+        self.deck.sort(order=True)
+        self.assertEqual(self.deck.cards[0].rank, data2.rank)
+        self.assertEqual(self.deck.cards[0].suit, data2.suit)
+        self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].rank, data1.rank)
+        self.assertEqual(self.deck.cards[len(self.deck.cards) - 1].suit, data1.suit)
 
     def test_add_card(self):
         """
