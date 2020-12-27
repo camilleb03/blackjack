@@ -17,17 +17,17 @@ def register_players():
     # Max player of 4
     print("+------------ PLAYERS ------------+")
     # TODO: Ask user to enter nb of players to register instead of imposing MAX to 4
-    while (len(players) < MAX_PLAYERS):
-        user_name = input(f'Enter name of player {len(players) + 1} : ')
-        if (len(user_name) == 0):
-            if (len(players) == 0):
+    while len(players) < MAX_PLAYERS:
+        user_name: str = input(f'Enter name of player {len(players) + 1} : ')
+        if len(user_name) == 0:
+            if len(players) == 0:
                 print("You have to enter one player minimum")
                 continue
             else:
                 # TODO: Make print prettier here
                 print(f"Welcome {players} !")
                 break
-        if (user_name.lower() == 'dealer' or (user_name in players)):
+        if user_name.lower() == 'dealer' or (user_name in players):
             print(f"You cannot choose {user_name} as name")
             continue
         players.append(user_name)
@@ -48,13 +48,13 @@ def main():
 
     show_actions_menu()
     # Enter game mode
-    while (True):
-        user_action = input("Enter action: ")
-        if (str(user_action).lower() == 'b'):
+    while True:
+        user_action: str = input("Enter action: ")
+        if user_action.lower() == 'b':
             start_blackjack(players)
 
         # Verify if user wants to quit
-        if (str(user_action).lower() == "q"):
+        if user_action.lower() == "q":
             # Quit game
             print("Thanks for playing!")
             sys.exit()
