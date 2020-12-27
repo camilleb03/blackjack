@@ -1,3 +1,5 @@
+import random
+
 class Hand():
     """
     Represents a hand of cards
@@ -6,15 +8,32 @@ class Hand():
         self.cards = []
         self.player_name = player_name
     
-    def sort(self, order=False):
-        self.cards.sort(reverse=order)
+        
+    def get_nb_cards(self):
+        if self.cards is None:
+            return 0
+        return len(self.cards)
 
-    def remove_card(self, card):
-        if self.check_enough_cards_in_deck(1):
+    # List starts at 0
+    def add_card(self, card, index=0):
+        self.cards.insert(index, card)
+
+    def check_enough_cards_in_hand(self, nb_to_remove):
+        return len(self.cards) >= nb_to_remove
+
+    def remove_card_by_value(self, card):
+        if self.check_enough_cards_in_hand(1):
             self.cards.remove(card)
 
-    def add_card(self, card):
-        self.cards.append(card)
+    def remove_card_by_index(self, index=0):
+        if self.check_enough_cards_in_hand(1):
+            del self.cards[index]
+
+    def discard_cards(self, nb_to_discard):
+        if self.check_enough_cards_in_hand(nb_to_discard):
+            nb_to_keep = len(self.cards) - nb_to_discard
+            b = set(random.sample(self.cards, nb_to_keep))
+            self.cards = [i for i in self.cards if i in b]
 
     def __str__(self):
         res = []

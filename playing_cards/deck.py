@@ -25,11 +25,13 @@ class Deck():
 
     def add_card(self, card):
         self.cards.append(card)
-    
-    def deal_cards(self, hand, number):
-        if self.check_enough_cards_in_deck(number):
-            for i in range(number):
-                hand.add_card(self.cards.pop())
+
+    def deal_cards(self, hand, nb_to_deal):
+        if self.check_enough_cards_in_deck(nb_to_deal):
+            for i in range(nb_to_deal):
+                # Adds card to the end of hand
+                nb_cards_in_hand = hand.get_nb_cards()
+                hand.add_card(card=self.cards.pop(), index=nb_cards_in_hand)
     
     def check_enough_cards_in_deck(self, nb_to_remove):
         return len(self.cards) >= nb_to_remove
