@@ -21,6 +21,14 @@ class Deck(CardsCollection):
         # TODO: Do something when there is not enough cards to deal
         else:
             print("Cannot deal cards")
+    
+    def deal_hands(self, nb_cards_to_deal, nb_hands ):
+        hands = []
+
+    
+    # TODO: Implement Fischer-Yates method ?
+    def shuffle(self):
+        random.shuffle(self.cards)
 
     def build(self):
         raise NotImplementedError("A deck needs cards in it")

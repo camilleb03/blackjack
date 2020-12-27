@@ -1,5 +1,4 @@
 import random
-
 from playing_cards import Card
 
 
@@ -47,10 +46,6 @@ class CardsCollection:
                 return self.cards.pop(index)
             else:
                 print("Cannot remove card by index")
-
-    # TODO: Implement Fischer-Yates method ?
-    def shuffle(self):
-        random.shuffle(self.cards)
 
     @staticmethod
     def merge_collections_cards(cards_from_c1: list, cards_from_c2: list):
