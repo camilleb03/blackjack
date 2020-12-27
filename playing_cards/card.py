@@ -2,6 +2,7 @@ class Card:
     """
     Represent a single playing card
     """
+
     def __init__(self, rank, suit, hidden=True):
         self.rank = rank
         self.suit = suit
@@ -9,28 +10,22 @@ class Card:
 
     def flip(self):
         self.hidden = (not self.hidden)
-    
+
     def __str__(self):
         if self.hidden:
             return 'Unknown'
         else:
-            return '%s of %s' % (self.rank,self.suit)
+            return '%s of %s' % (self.rank.name, self.suit.name)
 
     def __eq__(self, other):
-        if isinstance(other, Card):
-            return ((self.suit, self.rank) == (other.suit, other.rank))
-        return NotImplemented
+        if self.__class__ is other.__class__:
+            return (self.suit, self.rank) == (other.suit, other.rank)
 
     def __ne__(self, other):
-        if isinstance(other, Card):
-            return ((self.suit, self.rank) != (other.suit, other.rank))
-        return NotImplemented
+        if self.__class__ is other.__class__:
+            return (self.suit, self.rank) != (other.suit, other.rank)
 
-    """
-    TODO: Not sure what to do about this
     def __lt__(self, other):
-        if isinstance(other, Card):
+        if self.__class__ is other.__class__:
             return ((self.suit, self.rank) < (other.suit, other.rank))
         return NotImplemented
-    """
-        
