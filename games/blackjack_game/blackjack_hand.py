@@ -8,7 +8,7 @@ class BlackJackHand(Hand):
     BUSTED_SCORE = 22
 
     def __init__(self, player_name):
-        Hand.__init__(self, player_name=player_name)
+        super().__init__(player_name)
         self.busted = False
 
     @property
