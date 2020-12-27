@@ -1,5 +1,7 @@
+from ..card_game.game_status import GameStatus
+from playing_cards import FrenchDeck
 from .blackjack_hand import BlackJackHand
-from playing_cards import FrenchDeck, GameStatus
+
 
 class BlackJack():
     """
@@ -42,12 +44,12 @@ class BlackJack():
 
     def hit(self, hand):
         self.deck.deal_cards(hand, 1)
-        hand.cards[len(hand.cards)-1].flip()
+        hand.cards[len(hand.cards) - 1].flip()
         print(f"Player {hand.player_name} has chosen to hit.")
 
     def stand(self, hand):
         print(f"Player {hand.player_name} has chosen to stand.")
-    
+
     def show_table(self):
         print("+----- TABLE -----+")
         self.show_hand_value(self.dealer)
@@ -58,7 +60,7 @@ class BlackJack():
         print(hand)
         print(f"Value of {hand.value}")
         print("+----------------+")
-    
+
     """
     Old function that does not manage TIE
     def find_winners(self):
@@ -150,8 +152,12 @@ class BlackJack():
 
     def show_game_help_menu(self):
         print("+------------- HELP -------------+")
-        print("Goal : \n Each participant attempts \n to beat the dealer by getting a \n count as close to 21 as possible,\n without going over 21 (busting).")
-        print("Rules : \n A player must decide to : \n-stand (not ask for another card)\n-hit (ask another card to get \n closer to a count of 21).")
+        print(
+            "Goal : \n Each participant attempts \n to beat the dealer by getting a \n count as close to 21 as "
+            "possible,\n without going over 21 (busting).")
+        print(
+            "Rules : \n A player must decide to : \n-stand (not ask for another card)\n-hit (ask another card to get "
+            "\n closer to a count of 21).")
         print("+--------------------------------+")
 
     def show_player_dealer_hands(self, player):
@@ -190,7 +196,7 @@ class BlackJack():
             self.deck.deal_cards(self.dealer, 1)
         # Determine if dealer did bust
         self.dealer.did_bust()
-    
+
     def play(self):
         # For each player
         for player in self.hands:
