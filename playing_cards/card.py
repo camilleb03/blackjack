@@ -2,6 +2,7 @@ class Card:
     """
     Represent a single playing card
     """
+
     def __init__(self, rank, suit, hidden=True):
         self.rank = rank
         self.suit = suit
@@ -9,21 +10,21 @@ class Card:
 
     def flip(self):
         self.hidden = (not self.hidden)
-    
+
     def __str__(self):
         if self.hidden:
             return 'Unknown'
         else:
-            return '%s of %s' % (self.rank,self.suit)
+            return '%s of %s' % (self.rank, self.suit)
 
     def __eq__(self, other):
         if isinstance(other, Card):
-            return ((self.suit, self.rank) == (other.suit, other.rank))
+            return (self.suit, self.rank) == (other.suit, other.rank)
         return NotImplemented
 
     def __ne__(self, other):
         if isinstance(other, Card):
-            return ((self.suit, self.rank) != (other.suit, other.rank))
+            return (self.suit, self.rank) != (other.suit, other.rank)
         return NotImplemented
 
     """
@@ -33,4 +34,3 @@ class Card:
             return ((self.suit, self.rank) < (other.suit, other.rank))
         return NotImplemented
     """
-        

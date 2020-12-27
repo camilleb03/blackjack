@@ -1,5 +1,6 @@
 from playing_cards import Hand
 
+
 class BlackJackHand(Hand):
     """
     Represents a BlackJack hand from FrenchDeck of cards
@@ -7,7 +8,7 @@ class BlackJackHand(Hand):
     BUSTED_SCORE = 22
 
     def __init__(self, player_name):
-        Hand.__init__(self,player_name=player_name)
+        Hand.__init__(self, player_name=player_name)
         self.value = 0
         self.busted = False
 
@@ -39,5 +40,3 @@ class BlackJackHand(Hand):
     def did_bust(self):
         if self.value >= self.BUSTED_SCORE:
             self.busted = True
-        
-            

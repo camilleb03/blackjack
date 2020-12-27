@@ -3,6 +3,7 @@ import unittest
 from games.blackjack_game import BlackJackHand
 from playing_cards import Card
 
+
 class TestBlackJackHand(unittest.TestCase):
 
     def setUp(self):
@@ -14,7 +15,7 @@ class TestBlackJackHand(unittest.TestCase):
         """
         self.assertEqual(self.hand.value, 0)
         self.assertEqual(self.hand.busted, False)
-    
+
     def test_calculate_value_blackjack_hand_no_face_cards(self):
         """
         Check that two non face cards return the right value for hand
@@ -25,7 +26,7 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.add_card(card2)
         self.hand.calculate_value()
         self.assertEqual(self.hand.value, 17)
-    
+
     def test_calculate_value_blackjack_hand_two_face_cards(self):
         """
         Check that two face cards return the right value for hand
@@ -71,7 +72,7 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.add_card(card3)
         self.hand.calculate_value()
         self.assertEqual(self.hand.value, 19)
-    
+
     def test_reveal_hand_all_cards_hidden(self):
         """
         Check that all cards are visible in hand if all cards were hidden before
@@ -85,7 +86,7 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.reveal()
         for card in self.hand.cards:
             self.assertFalse(card.hidden)
-    
+
     def test_reveal_hand_one_card_visible(self):
         """
         Check that all cards are visible in hand if one card was visible and other were hidden before
@@ -99,7 +100,7 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.reveal()
         for card in self.hand.cards:
             self.assertFalse(card.hidden)
-    
+
     def test_hand_busted(self):
         """
         Check that busted attribute is True when hand has a value above 21
@@ -113,6 +114,7 @@ class TestBlackJackHand(unittest.TestCase):
         self.hand.calculate_value()
         self.hand.did_bust()
         self.assertTrue(self.hand.busted)
-    
+
+
 if __name__ == '__main__':
     unittest.main()

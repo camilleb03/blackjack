@@ -3,6 +3,7 @@ import unittest
 from games.blackjack_game import BlackJack, BlackJackHand
 from playing_cards import Card
 
+
 class TestBlackJackGame(unittest.TestCase):
 
     def setUp(self):
@@ -15,7 +16,7 @@ class TestBlackJackGame(unittest.TestCase):
         self.assertEqual(self.blackjack.player_names, ['Test1', 'Test2', 'Test3'])
         self.assertIsInstance(self.blackjack.dealer, BlackJackHand)
         self.assertEqual(self.blackjack.dealer.player_name.lower(), 'dealer')
-    
+
     def test_set_up_blackjack_game_nb_players_equals_nb_hands(self):
         """
         Check that the number of hands is the same as the number of players
@@ -40,7 +41,7 @@ class TestBlackJackGame(unittest.TestCase):
                 self.assertFalse(card.hidden)
         self.assertFalse(self.blackjack.dealer.cards[0].hidden)
         self.assertTrue(self.blackjack.dealer.cards[1].hidden)
-    
+
     def test_set_up_blackjack_game_all_hands_has_value_over_zero(self):
         """
         Check that every hand (including dealer's) has a value over 0
@@ -48,18 +49,18 @@ class TestBlackJackGame(unittest.TestCase):
         for hand in self.blackjack.hands:
             self.assertGreater(hand.value, 0)
         self.assertGreater(self.blackjack.dealer.value, 0)
-    
+
     def test_hit_adds_one_card_to_player_hand(self):
         """
         Check that hit adds one card to the player's hand
         """
-        data = BlackJackHand ('Test')
+        data = BlackJackHand('Test')
         self.assertEqual(len(data.cards), 0)
         self.blackjack.hit(data)
         self.assertEqual(len(data.cards), 1)
         self.blackjack.hit(data)
         self.assertEqual(len(data.cards), 2)
-    
+
     def test_hit_adds_type_Card_to_player_hand(self):
         """
         Check that hit adds a object of type Card in player's hand
@@ -67,6 +68,7 @@ class TestBlackJackGame(unittest.TestCase):
         data = BlackJackHand('Test')
         self.blackjack.hit(data)
         self.assertIsInstance(data.cards[0], Card)
+
 
 if __name__ == '__main__':
     unittest.main()
