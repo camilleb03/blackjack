@@ -7,13 +7,13 @@ class TestFrenchDeck(unittest.TestCase):
     def setUp(self):
         self.deck = FrenchDeck()
     
-    def test_generate_cards_length(self):
+    def test_generate_one_deck_length(self):
         """
         Check that deck contains 52 cards
         """
         self.assertEqual(len(self.deck.cards), 52)
     
-    def test_generate_3_decks(self):
+    def test_generate_three_decks_length(self):
         """
         Check that deck contains 156 cards
         """
