@@ -35,6 +35,9 @@ class Deck():
     
     def check_enough_cards_in_deck(self, nb_to_remove):
         return len(self.cards) >= nb_to_remove
+
+    def get_nb_cards(self):
+        return len(self.cards)
     
     def build(self):
         raise NotImplementedError("A deck needs cards in it")
