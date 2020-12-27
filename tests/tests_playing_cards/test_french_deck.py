@@ -11,8 +11,24 @@ class TestFrenchDeck(unittest.TestCase):
         """
         Check that deck contains 52 cards
         """
-        data = 52
         self.assertEqual(len(self.deck.cards), 52)
+    
+    def test_generate_3_decks(self):
+        """
+        Check that deck contains 156 cards
+        """
+        self.deck = FrenchDeck(nb_decks=3)
+        self.assertEqual(len(self.deck.cards), 156)
+
+    def test_generate_multiple_decks_card_references(self):
+        """
+        Check when one card is modified, the other version is not (deepcopy)
+        """
+        self.deck = FrenchDeck(nb_decks=2)
+        self.assertEqual(self.deck.cards[0], self.deck.cards[52])
+        self.deck.cards[0].suit = 'Hearts'
+        self.assertNotEqual(self.deck.cards[0], self.deck.cards[52])
+        self.assertIsNot(self.deck.cards[0], self.deck.cards[52])
     
     def test_generate_cards_content(self):
         """
