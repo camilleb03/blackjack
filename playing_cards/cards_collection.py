@@ -1,4 +1,3 @@
-import random
 from playing_cards import Card
 
 
@@ -21,6 +20,9 @@ class CardsCollection:
 
     def check_enough_cards(self, nb_to_remove=1):
         return self.get_nb_cards() >= nb_to_remove
+    
+    def add_cards(self, cards: [Card]):
+        self.cards.extend(cards)
 
     # List starts at 0
     def add_card(self, card: Card, index=None):
@@ -46,6 +48,17 @@ class CardsCollection:
                 return self.cards.pop(index)
             else:
                 print("Cannot remove card by index")
+
+    # TODO: Might change name to reveal_cards()
+    def reveal(self):
+        for card in self.cards:
+            if card.hidden:
+                card.flip()
+
+    def hide(self):
+        for card in self.cards:
+            if not card.hidden:
+                card.flip()
 
     @staticmethod
     def merge_collections_cards(cards_from_c1: list, cards_from_c2: list):

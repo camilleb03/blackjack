@@ -31,13 +31,6 @@ class BlackJackHand(Hand):
             new_value = new_value - 10
         return new_value
 
-    def reveal(self):
-        for card in self.cards:
-            if card.hidden:
-                card.flip()
-
-    # TODO: Add a hide(self) method
-
     @property
     def busted(self):
         return self.value >= self.BUSTED_SCORE
