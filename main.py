@@ -47,7 +47,7 @@ def start_war(players):
     war = War(nb_decks=1)
     war.show_game_title()
     war.add_players(players=players)
-    war.set_up()
+    war.play()
 
 def main():
     # Enter all player participating
