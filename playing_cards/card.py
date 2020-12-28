@@ -15,7 +15,7 @@ class Card:
         if self.hidden:
             return 'Unknown'
         else:
-            return '%s of %s' % (self.rank.name, self.suit.name)
+            return '%s of %s' % (str(self.rank), str(self.suit))
 
     def __eq__(self, other):
         if self.__class__ is other.__class__:
