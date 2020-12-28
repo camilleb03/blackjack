@@ -47,11 +47,12 @@ def start_war(players):
     war = War(nb_decks=1)
     war.show_game_title()
     war.add_players(players=players)
+    war.set_up()
 
 def main():
     # Enter all player participating
     # players = register_players()
-    players = ['Boh', 'Bah', 'Beh']
+    players = ['Boh', 'Bah']
     start_war(players=players)
     
 
