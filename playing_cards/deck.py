@@ -1,3 +1,4 @@
+import random
 from .cards_collection import CardsCollection
 
 
@@ -22,9 +23,21 @@ class Deck(CardsCollection):
         else:
             print("Cannot deal cards")
     
-    def deal_hands(self, nb_cards_to_deal, nb_hands ):
-        hands = []
-
+    def deal_hands(self, nb_cards_per_hand, nb_hands):
+        if self.check_enough_cards(nb_cards_per_hand * nb_hands):
+            all_hands = []
+            # Generate a hand for all hands
+            for h in range(nb_hands):
+                hand = []
+                # Generate cards for a hand
+                for c in range(nb_cards_per_hand):
+                    # Remove card
+                    card_to_deal = self.remove_card_by_index()
+                    hand.append(card_to_deal)
+                all_hands.append(hand)
+            return all_hands
+        else:
+            print("Cannot deal cards")
     
     # TODO: Implement Fischer-Yates method ?
     def shuffle(self):
