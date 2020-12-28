@@ -39,6 +39,7 @@ class CardsCollection:
             return card
         else:
             print("Cannot remove card by value")
+            return None
 
     def remove_card_by_index(self, index=None):
         if self.check_enough_cards():
@@ -48,6 +49,7 @@ class CardsCollection:
                 return self.cards.pop(index)
             else:
                 print("Cannot remove card by index")
+                return None
 
     # TODO: Might change name to reveal_cards()
     def reveal(self):
